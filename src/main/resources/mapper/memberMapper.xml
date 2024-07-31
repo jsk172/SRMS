@@ -5,8 +5,8 @@
 
 <mapper namespace="com.test.jsk.member.MemberMapper">
 
-    <select id="" resultType="com.test.jsk.member.MemberMapper">
-
+    <select id="findByMemId>" parameterType="String" resultType="com.test.jsk.vo.MemberVO">
+        select * from TB_MEMBER where MEM_ID = #{memId}
     </select>
 
 </mapper>
