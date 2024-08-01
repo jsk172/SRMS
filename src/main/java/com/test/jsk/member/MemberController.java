@@ -16,8 +16,8 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    /*@GetMapping("/{memId}")
+    @GetMapping("/{memId}")
     public MemberVO getMemberById(@PathVariable String memId){
         return memberService.findByMemId(memId);
-    }*/
+    }
 }

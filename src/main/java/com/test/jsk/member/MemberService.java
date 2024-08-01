@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class MemberService {
     private final MemberMapper memberMapper;
 
-    /*public MemberVO findByMemId(String memId) {
+    public MemberVO findByMemId(String memId) {
         return memberMapper.findByMemId(memId);
-    }*/
+    }
 }

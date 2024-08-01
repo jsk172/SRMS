@@ -1,4 +1,3 @@
-/*
 package com.test.jsk.config;
 
 import com.test.jsk.member.MemberMapper;
@@ -40,4 +39,3 @@ public class CustomUserDetailsService implements UserDetailsService {
         );
     }
 }
-*/
