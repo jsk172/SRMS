@@ -4,14 +4,14 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <header th:fragment="header-fragment">
     <div id="logo">
-        <h2><a th:href="@{/}">입출고 관리 시스템</a> </h2>
+        <h2><a th:href="@{/}">입출고관리 시스템</a> </h2>
     </div>
     <nav>
         <!-- 로그인 전 -->
         <th:block sec:authorize="isAnonymous()">
             <ul id="topMenu">
                 <li>
-                    <a th:href="@{/}">로그인</a>
+                    <a th:href="@{/login}">로그인</a>
                 </li>
                 <li>
                     <a th:href="@{/}">회원가입</a>
