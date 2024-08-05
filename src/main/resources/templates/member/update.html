@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 수정</title>
+</head>
+<body>
+<h2>회원 수정</h2>
+<form th:action="@{/member/update}" method="post" class="joinform" th:object="${MemberVO}">
+    <fieldset>
+        <ul>
+            <li>
+                <label>이름</label> <!-- 'for' 속성 제거 -->
+                <input type="text" id="address" name="address">
+            </li>
+            <li>
+                <label>전화번호</label> <!-- 'for' 속성 제거 -->
+                <input type="text" id="phoneNum" name="phoneNum">
+            </li>
+            <li>
+                <label>이메일</label> <!-- 'for' 속성 제거 -->
+                <input type="text" id="name" name="name">
+            </li>
+            <li>
+                <input type="submit" value="수정">
+                <a th:href="@{/}"><button type="button">취소</button></a>
+            </li>
+        </ul>
+    </fieldset>
+</form>
+</body>
+</html>
