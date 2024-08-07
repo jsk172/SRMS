@@ -9,4 +9,14 @@
         select * from TB_MEMBER where MEM_ID = #{memId}
     </select>
 
+    <insert id="memAdd" parameterType="com.test.jsk.vo.MemberVO">
+
+        <selectKey resultType="long" keyProperty="memSeq" order="BEFORE">
+            SELECT mem_seq.nextval FROM dual
+        </selectKey>
+
+        INSERT INTO TB_MEMBER(MEM_SEQ, MEM_ID, MEM_PASSWORD, MEM_EMAIL, MEM_PHONE, MEM_BIRTH, MEM_NAME)
+        VALUES (#{memSeq}, #{memId}, #{memPassword}, #{memEmail}, #{memPhone}, #{memBirth}, #{memName})
+    </insert>
+
 </mapper>

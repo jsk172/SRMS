@@ -9,7 +9,7 @@ import java.util.List;
 public interface MemberMapper {
     MemberVO findByMemId(String memId);
 
-    void save(MemberVO memberVO);
+    void memAdd(MemberVO memberVO);
 
     List<MemberVO> findAll();
 

@@ -26,15 +26,12 @@ public class MemberController {
 
     //회원 가입
     @GetMapping("/member/join")
-    public String joinForm(MemberVO memberVO){
+    public String joinForm(){
         return"/member/join";
     }
     @PostMapping("/member/join")
-    public String join(@Valid MemberVO memberVO, BindingResult bindingResult){ //@valid : 필드의 유효성 검사
-        if(bindingResult.hasErrors()){
-            return "member/join";
-        }
-        memberService.save(memberVO);
+    public String join(@ModelAttribute MemberVO memberVO){ //@valid : 필드의 유효성 검사
+        memberService.memAdd(memberVO);
         return "redirect:/";
     }
 

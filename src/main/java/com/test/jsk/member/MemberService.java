@@ -17,8 +17,8 @@ public class MemberService {
     }
 
     //회원 가입
-    public void save(MemberVO memberVO) {
-        memberMapper.save(memberVO);
+    public void memAdd(MemberVO memberVO) {
+        memberMapper.memAdd(memberVO);
     }
 
     //회원 목록

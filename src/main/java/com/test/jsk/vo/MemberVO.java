@@ -1,5 +1,6 @@
 package com.test.jsk.vo;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
@@ -12,10 +13,10 @@ public class MemberVO {
     private String memId;
     private String memPassword;
     private String memEmail;
-    private Integer memPhone;
-    private Date memBirth;
+    private String memPhone;
+    private String memBirth;
     private String memName;
-    private Integer memNum;
+    private String memNum;
     private Date memRegDate;
     private Date memUpdateDate;
     private String memRole;
