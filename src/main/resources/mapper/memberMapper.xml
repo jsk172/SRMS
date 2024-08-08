@@ -15,8 +15,8 @@
             SELECT mem_seq.nextval FROM dual
         </selectKey>
 
-        INSERT INTO TB_MEMBER(MEM_SEQ, MEM_ID, MEM_PASSWORD, MEM_EMAIL, MEM_PHONE, MEM_BIRTH, MEM_NAME)
-        VALUES (#{memSeq}, #{memId}, #{memPassword}, #{memEmail}, #{memPhone}, #{memBirth}, #{memName})
+        INSERT INTO TB_MEMBER(MEM_SEQ, MEM_ID, MEM_PASSWORD, MEM_EMAIL, MEM_PHONE, MEM_BIRTH, MEM_NAME, MEM_NUM, MEM_REG_DATE)
+        VALUES (#{memSeq}, #{memId}, #{memPassword}, #{memEmail}, #{memPhone}, #{memBirth}, #{memName}, #{memNum}, sysdate)
     </insert>
 
 </mapper>

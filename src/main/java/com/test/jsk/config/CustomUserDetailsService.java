@@ -23,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         MemberVO member = memberMapper.findByMemId(username);
         if (member == null) {
-            throw new UsernameNotFoundException("User not found");
+            throw new UsernameNotFoundException("존재하지 않는 아이디 입니다.");
         }
 
         // Fetch the role from the mem_role field
@@ -32,10 +32,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         // Convert the role to GrantedAuthority
         List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role));
 
-        return new org.springframework.security.core.userdetails.User(
-                member.getMemId(),
-                member.getMemPassword(),
-                authorities
-        );
+        return new SecurityUser(member, authorities);
     }
 }

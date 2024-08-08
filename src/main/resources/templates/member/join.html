@@ -8,6 +8,7 @@
 <h2>회원 가입</h2>
 <form th:action="@{/member/join}" method="post" th:object="${memberVO}" class="joinform">
     <fieldset>
+        <input type="hidden" id="memNum" name="memNum">
         <ul>
             <li>
                 <label for="memId">아이디</label>
