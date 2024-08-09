@@ -5,18 +5,38 @@
 
 <mapper namespace="com.test.jsk.member.MemberMapper">
 
-    <select id="findByMemId" parameterType="String" resultType="com.test.jsk.vo.MemberVO">
-        select * from TB_MEMBER where MEM_ID = #{memId}
+    <resultMap id="MemberResultMap" type="com.test.jsk.vo.MemberVO">
+        <id property="memSeq" column="MEM_SEQ"/>
+        <result property="memId" column="MEM_ID" />
+        <result property="memPassword" column="MEM_PASSWORD" />
+        <result property="memEmail" column="MEM_EMAIL" />
+        <result property="memPhone" column="MEM_PHONE" />
+        <result property="memBirth" column="MEM_BIRTH" />
+        <result property="memName" column="MEM_NAME" />
+        <result property="memNum" column="MEM_NUM" />
+        <result property="memRegDate" column="MEM_REG_DATE" />
+        <result property="memUpdateDate" column="MEM_UPDATE_DATE" />
+        <result property="memRole" column="MEM_ROLE" />
+    </resultMap>
+
+    <select id="findByMemId" parameterType="String" resultMap="MemberResultMap">
+        select * from TB_MEMBER where MEM_ID = #{username}
     </select>
 
+    <!--회원가입-->
     <insert id="memAdd" parameterType="com.test.jsk.vo.MemberVO">
-
         <selectKey resultType="long" keyProperty="memSeq" order="BEFORE">
-            SELECT mem_seq.nextval FROM dual
+            select mem_seq.nextval from dual
         </selectKey>
 
-        INSERT INTO TB_MEMBER(MEM_SEQ, MEM_ID, MEM_PASSWORD, MEM_EMAIL, MEM_PHONE, MEM_BIRTH, MEM_NAME, MEM_NUM, MEM_REG_DATE)
-        VALUES (#{memSeq}, #{memId}, #{memPassword}, #{memEmail}, #{memPhone}, #{memBirth}, #{memName}, #{memNum}, sysdate)
+        insert into TB_MEMBER(MEM_SEQ, MEM_ID, MEM_PASSWORD, MEM_EMAIL, MEM_PHONE, MEM_BIRTH, MEM_NAME, MEM_NUM, MEM_REG_DATE)
+        values (#{memSeq}, #{memId}, #{memPassword}, #{memEmail}, #{memPhone}, #{memBirth}, #{memName}, #{memNum}, sysdate)
     </insert>
+
+    <!--memNum 중복체크-->
+    <select id="isMemNumExists" resultType="int" parameterType="String">
+        select count(*) from TB_MEMBER
+        where MEM_NUM = #{memNum}
+    </select>
 
 </mapper>

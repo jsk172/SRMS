@@ -1,6 +1,5 @@
 package com.test.jsk.vo;
 
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 

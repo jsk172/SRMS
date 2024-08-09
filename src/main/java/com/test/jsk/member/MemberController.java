@@ -19,9 +19,9 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/{memId}")
-    public MemberVO getMemberById(@PathVariable String memId){
-        return memberService.findByMemId(memId);
+    @GetMapping("/login")
+    public String loginForm(){
+        return "login";
     }
 
     //회원 가입

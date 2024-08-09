@@ -15,23 +15,26 @@ public class MemberService {
     private final MemberMapper memberMapper;
     private final PasswordEncoder passwordEncoder;
 
-    public MemberVO findByMemId(String memId) {
-        return memberMapper.findByMemId(memId);
-    }
-
     //회원 가입
     public void memAdd(MemberVO memberVO) {
         String encPw = passwordEncoder.encode(memberVO.getMemPassword()); //비밀번호 암호화
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         int length = 8;
         SecureRandom random = new SecureRandom();
-        StringBuilder memNum = new StringBuilder(length); //랜덤 문자열 생성
-        for(int i=0; i<length; i++){
-            int index = random.nextInt(characters.length());
-            memNum.append(characters.charAt(index));
+        String memNum;
+        while (true){
+            StringBuilder tempMemNum = new StringBuilder(length); //랜덤 문자열 생성
+            for(int i=0; i<length; i++){
+                int index = random.nextInt(characters.length());
+                tempMemNum.append(characters.charAt(index));
+            }
+            memNum = tempMemNum.toString();
+            if(memberMapper.isMemNumExists(memNum) == 0){
+                break;
+            }
         }
         memberVO.setMemPassword(encPw); //암호화
-        memberVO.setMemNum(memNum.toString()); //사번저장
+        memberVO.setMemNum(memNum); //사번 저장
         memberMapper.memAdd(memberVO);
     }
 

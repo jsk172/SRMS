@@ -11,7 +11,7 @@
 		<section id="login">
 		<h2>로그인</h2>
 		<div class="login">
-			<form th:action="@{/login}" method="post" class="loginform" th:object="${member}">
+			<form th:action="@{/login}" method="post" class="loginform">
 				<fieldset>
 					<ul>
 						<li>
@@ -19,11 +19,8 @@
 							<input type="text" name="username" id="username" placeholder="아이디">
 						</li>
 						<li>
-							<label for="memPassword">비밀번호</label>
-							<input type="password" name="memPassword" id="memPassword" placeholder="비밀번호">
-						</li>
-						<li>
-							<span th:text="${error}" class="error"></span>
+							<label for="password">비밀번호</label>
+							<input type="password" name="password" id="password" placeholder="비밀번호">
 						</li>
 						<li>
 							<input type="submit" value="로그인">

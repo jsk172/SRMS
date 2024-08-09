@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -23,32 +24,30 @@ public class SecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(){
-        return userDetailsService;
-    }
-
-    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests(authorizeRequests ->
-                        authorizeRequests
-                                .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/error").permitAll()
-                                .requestMatchers("/member/**").permitAll()
-                                .requestMatchers("/admin/**").hasRole("ADMIN")
-                                .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
-                                .anyRequest().authenticated()
-                )
-                .formLogin(formLogin ->
-                        formLogin
-                                .loginPage("/login")
-                                .defaultSuccessUrl("/", true)
-                                .permitAll()
-                )
-                .logout(logout ->
-                        logout.permitAll()
-                )
-                .csrf(csrf -> csrf.disable()); // Optional: Disable CSRF protection if needed
 
+        http.userDetailsService(userDetailsService);
+
+        http
+                .authorizeHttpRequests(authroize -> authroize
+                        .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/error").permitAll()
+                        .requestMatchers("/member/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                        .anyRequest().authenticated()
+                )
+                .csrf().disable()
+                .formLogin(form ->
+                        form.loginPage("/login")
+                            .defaultSuccessUrl("/", true)
+                            .permitAll()
+                );
+
+        http.logout()
+                .logoutUrl("/logout")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .invalidateHttpSession(true)
+                .logoutSuccessUrl("/");
         return http.build();
     }
 }
