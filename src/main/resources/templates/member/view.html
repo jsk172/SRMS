@@ -2,9 +2,46 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>주소록 보기</title>
+    <title>내 정보</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h2>주소록</h2>
+<div th:replace="~{header::header-fragment}"></div>
+    <h2>내 정보</h2>
+    <div class="detail">
+        <fieldset>
+            <input type="hidden" name="memSeq" id="memSeq" th:value="${member.memSeq}">
+            <ul>
+                <li>
+                    <label for="memId">아이디</label>
+                    <input type="text" name="memId" id="memId" th:value="${member.memId}" readonly>
+                </li>
+                <li>
+                    <label for="memName">이름</label>
+                    <input type="text" name="memName" id="memName" th:value="${member.memName}" readonly>
+                </li>
+                <li>
+                    <label for="memEmail">이메일</label>
+                    <input type="text" name="memEmail" id="memEmail" th:value="${member.memEmail}" readonly>
+                </li>
+                <li>
+                    <label for="memPhone">연락처</label>
+                    <input type="text" name="memPhone" id="memPhone" th:value="${member.memPhone}" readonly>
+                </li>
+                <li>
+                    <label for="memBirth">생년월일</label>
+                    <input type="text" name="memBirth" id="memBirth" th:value="${member.memBirth}" readonly>
+                </li>
+                <li>
+                    <label for="memRegDate">가입일</label>
+                    <input type="text" name="memRegDate" id="memRegDate" th:value="${member.memRegDate}" readonly>
+                </li>
+                <li>
+                    <a th:href="@{/}"><button type="button">Home</button></a>
+                </li>
+            </ul>
+        </fieldset>
+    </div>
+<div th:replace="~{footer::footer-fragment}"></div>
 </body>
 </html>

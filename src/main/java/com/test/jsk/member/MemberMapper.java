@@ -15,7 +15,7 @@ public interface MemberMapper {
 
     List<MemberVO> findAll();
 
-    void findByMemSeq(Integer memSeq);
+    MemberVO memView(Long memSeq);
 
     void deleteByName(Integer memSeq);
 

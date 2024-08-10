@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>회원 가입</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<div th:replace="~{header::header-fragment}"></div>
 <h2>회원 가입</h2>
 <form th:action="@{/member/join}" method="post" th:object="${memberVO}" class="joinform">
     <fieldset>
@@ -45,5 +47,6 @@
         </ul>
     </fieldset>
 </form>
+<div th:replace="~{footer::footer-fragment}"></div>
 </body>
 </html>

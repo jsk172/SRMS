@@ -18,4 +18,10 @@ public class memberMapperTest {
         MemberVO memberVO = memberMapper.findByMemId(username);
         System.out.println("memberVO: " + memberVO);
     }
+
+    @Test void testView(){
+        Long memSeq = 9L;
+        MemberVO memberVO = memberMapper.memView(memSeq);
+        System.out.println("정보 : " + memberVO);
+    }
 }

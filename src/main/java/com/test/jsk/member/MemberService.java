@@ -51,9 +51,8 @@ public class MemberService {
     }
 
     //회원 상세보기
-    public MemberVO findByMemSeq(Integer memSeq) {
-        memberMapper.findByMemSeq(memSeq);
-        return null;
+    public MemberVO memView(Long memSeq) {
+        return memberMapper.memView(memSeq);
     }
 
     //회원 탈퇴

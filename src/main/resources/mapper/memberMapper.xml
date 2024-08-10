@@ -19,8 +19,15 @@
         <result property="memRole" column="MEM_ROLE" />
     </resultMap>
 
+    <!-- 로그인 -->
     <select id="findByMemId" parameterType="String" resultMap="MemberResultMap">
         select * from TB_MEMBER where MEM_ID = #{username}
+    </select>
+
+    <!--memNum 중복체크-->
+    <select id="isMemNumExists" resultType="int" parameterType="String">
+        select count(*) from TB_MEMBER
+        where MEM_NUM = #{memNum}
     </select>
 
     <!--회원가입-->
@@ -33,10 +40,10 @@
         values (#{memSeq}, #{memId}, #{memPassword}, #{memEmail}, #{memPhone}, #{memBirth}, #{memName}, #{memNum}, sysdate)
     </insert>
 
-    <!--memNum 중복체크-->
-    <select id="isMemNumExists" resultType="int" parameterType="String">
-        select count(*) from TB_MEMBER
-        where MEM_NUM = #{memNum}
+    <!-- 내 정보 보기 -->
+    <select id="memView" parameterType="Long" resultMap="MemberResultMap">
+        select * from TB_MEMBER where MEM_SEQ = #{memSeq}
     </select>
+
 
 </mapper>

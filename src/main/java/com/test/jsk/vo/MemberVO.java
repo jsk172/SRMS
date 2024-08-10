@@ -1,6 +1,8 @@
 package com.test.jsk.vo;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
@@ -8,7 +10,7 @@ import java.util.Date;
 @Data
 @Alias("memberVO")
 public class MemberVO {
-    private long memSeq;
+    private Long memSeq;
     private String memId;
     private String memPassword;
     private String memEmail;

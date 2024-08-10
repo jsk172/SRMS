@@ -18,5 +18,30 @@
                 </li>
             </ul>
         </th:block>
+        <!-- 로그인 후 -->
+        <th:block sec:authorize="isAuthenticated()">
+            <ul id="topMenu">
+                <li>
+                    <span th:text="${member.memName}" style="color: #ddd"></span>&nbsp;님
+                </li>
+                <li>
+                    <a th:href="@{/logout}">로그아웃</a>
+                </li>
+                <li>
+                    <a th:href="@{|/member/view/${member.memSeq}|}">나의정보</a>
+                </li>
+                <li>
+                    <a th:href="@{/}">상품목록</a>
+                </li>
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                    <li>
+                        <a th:href="@{/}">회원목록</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/}">상품등록</a>
+                    </li>
+                </th:block>
+            </ul>
+        </th:block>
     </nav>
 </header>

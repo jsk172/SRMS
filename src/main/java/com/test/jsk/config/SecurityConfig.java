@@ -30,10 +30,9 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authroize -> authroize
-                        .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/error").permitAll()
+                        .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/auth/**", "/error").permitAll()
                         .requestMatchers("/member/**").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated()
                 )
                 .csrf().disable()
@@ -41,6 +40,9 @@ public class SecurityConfig {
                         form.loginPage("/login")
                             .defaultSuccessUrl("/", true)
                             .permitAll()
+                )
+                .exceptionHandling(
+                        exceptions -> exceptions.accessDeniedPage("/auth/accessDenied")
                 );
 
         http.logout()

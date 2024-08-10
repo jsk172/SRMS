@@ -11,11 +11,12 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final MemberMapper memberMapper;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -27,4 +28,5 @@ public class CustomUserDetailsService implements UserDetailsService {
         // UserDetails 객체 반환
         return new SecurityUser(findMember);
     }
+
 }
