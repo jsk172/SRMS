@@ -52,24 +52,26 @@ public class MemberController {
     public String detail(@PathVariable Long memSeq, Model model){
         //로그인 여부 확인
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication == null || (authentication.getPrincipal() instanceof UserDetails)){
-            return "redirect:/login";
+        if(!(authentication.getPrincipal() instanceof UserDetails)){
+            return "redirect:/auth/accessDenied";
         }
         UserDetails userDetails = (SecurityUser) authentication.getPrincipal();
         String currentUserName = userDetails.getUsername();
 
+        //회원정보 조회
         MemberVO memberVO = memberService.memView(memSeq);
         if(memberVO == null){
-            return "redirect:/";
+            return "redirect:/"; //회원정보 없을때
         }
-
+        // 권한 및 회원 정보 확인
         boolean isAdmin = authentication.getAuthorities().stream()
                 .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_ADMIN"));
         if(isAdmin || memberVO.getMemId().equals(currentUserName)){
+            //관리자 혹은 본인인 경우
             model.addAttribute("member", memberVO);
             return "member/view";
         } else{
-            return "redirect:/";
+            return "redirect:/auth/accessDenied";
         }
     }
 

@@ -22,7 +22,7 @@
         <th:block sec:authorize="isAuthenticated()">
             <ul id="topMenu">
                 <li>
-                    <span th:text="${member.memName}" style="color: #ddd"></span>&nbsp;님
+                    <span th:if="${member != null}" th:text="${member.memName}" style="color: #ddd"></span>&nbsp;님
                 </li>
                 <li>
                     <a th:href="@{/logout}">로그아웃</a>
